@@ -72,7 +72,6 @@ fn display_matrix(board_grid: &Vec<Vec<i8>>)  {
 
     let mut data = matrix::Matrix::new(rows, bg_);
     let mut display = MatrixDisplay::new(&format, &mut data);
-	display.cell_at_cursor_position((13, 6)).color.bg = 10;
     display.print(&mut std::io::stdout(), &style::BordersStyle::None);
 
 }

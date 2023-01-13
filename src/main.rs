@@ -20,17 +20,19 @@ fn next_gen(board: &Vec<Vec<i8>>) -> Vec<Vec<i8>> {
                 for y in -1i8..=1 {
 
                   
-                    let new_x = ((i as i8) + x + row_count as i8) % row_count as i8;
-                    let new_y = ((j as i8) + y + col_count as i8) % col_count as i8;
-
+                    let mut new_x = (i as i8) + x;
+                    let mut new_y = (j as i8) + y;
+                    new_x = (new_x + row_count as i8) % row_count as i8;
+                    new_y = (new_y + col_count as i8) % col_count as i8;
                     neighbours_alive += board[new_x as usize][new_y as usize];
-                    neighbours_alive -= current_state;
-
+                    
+                
 
 
                     
                 }
             }
+            neighbours_alive -= current_state;
             if current_state == 1 && neighbours_alive < 2 {
                 new[i][j] = 0;
             } else if current_state == 1 && neighbours_alive > 3 {
@@ -78,9 +80,9 @@ fn display_matrix(board_grid: &Vec<Vec<i8>>)  {
 
 fn main() {
     
-    const gens: u8 = 5;
+    const gens: u8 = 20;
 
-    let (rows,cols) = (5,5);
+    let (rows,cols) = (10,10);
     let mut board_grid: Vec<Vec<i8>> = vec![vec![0; cols]; rows];
 
     for (i, row) in board_grid.iter_mut().enumerate() {
@@ -89,6 +91,19 @@ fn main() {
             *col = rand;
         }
     }
+    //blinker 
+    // board_grid[3][2] = 1;
+    // board_grid[2][2] = 1;
+    // board_grid[1][2] = 1;
+
+    //glider
+    // board_grid[2][1] = 1;
+    // board_grid[2][2] = 1;
+    // board_grid[2][3] = 1;
+    // board_grid[1][3] = 1;
+    // board_grid[0][2] = 1;
+    // board_grid[3][2] = 1;
+  
     println!("Initial grid:");
 
     println!("");

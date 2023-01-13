@@ -51,7 +51,8 @@ fn next_gen(board: &Vec<Vec<i8>>) -> Vec<Vec<i8>> {
 
 fn display_matrix(board_grid: &Vec<Vec<i8>>)  {
     let rows = board_grid.len();
-    let format = Format::new(7, 3);
+
+    let format = Format::new(2,2);
     let bg_flat: Vec<_> = board_grid.into_iter().flatten().collect();
     let bg_flat_str = bg_flat.into_iter().enumerate().map(|(i,x)| { x.to_string()}).collect::<Vec<_>>();
     

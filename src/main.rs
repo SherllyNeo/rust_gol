@@ -11,9 +11,9 @@ fn next_gen(board: &Vec<Vec<i8>>) -> Vec<Vec<i8>> {
     let mut new: Vec<Vec<i8>> = vec![vec![0; row_count]; col_count];
 
     for i in 0..row_count {
-        for y in 0..col_count {
+        for j in 0..col_count {
            
-            let current_state = board[i][y];
+            let current_state = board[i][j];
             let mut neighbours_alive = 0;
 
             for x in -1i8..=1 {
@@ -21,7 +21,7 @@ fn next_gen(board: &Vec<Vec<i8>>) -> Vec<Vec<i8>> {
 
                   
                     let new_x = ((i as i8) + x + row_count as i8) % row_count as i8;
-                    let new_y = ((y as i8) + y + col_count as i8) % col_count as i8;
+                    let new_y = ((j as i8) + y + col_count as i8) % col_count as i8;
 
                     neighbours_alive += board[new_x as usize][new_y as usize];
                     neighbours_alive -= current_state;
@@ -32,13 +32,13 @@ fn next_gen(board: &Vec<Vec<i8>>) -> Vec<Vec<i8>> {
                 }
             }
             if current_state == 1 && neighbours_alive < 2 {
-                new[i][y] = 0;
+                new[i][j] = 0;
             } else if current_state == 1 && neighbours_alive > 3 {
-                new[i][y] = 0;
+                new[i][j] = 0;
             } else if current_state == 0 && neighbours_alive == 3 {
-                new[i][y] = 1;
+                new[i][j] = 1;
             } else {
-                new[i][y] = current_state;
+                new[i][j] = current_state;
             }
 
 
